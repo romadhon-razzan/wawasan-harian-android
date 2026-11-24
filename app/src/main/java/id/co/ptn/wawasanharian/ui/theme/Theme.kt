@@ -1,57 +1,69 @@
 package id.co.ptn.wawasanharian.ui.theme
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
+import androidx.compose.ui.graphics.Color
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = Navy,
+    onPrimary = TextLight,
+    primaryContainer = NavySecondary,
+    onPrimaryContainer = TextLight,
+    secondary = GoldDark,
+    onSecondary = TextLight,
+    secondaryContainer = GoldContainerLight,
+    onSecondaryContainer = Ink,
+    background = Paper,
+    onBackground = Ink,
+    surface = Paper,
+    onSurface = Ink,
+    surfaceVariant = PaperVariant,
+    onSurfaceVariant = InkSecondary,
+    surfaceContainerLowest = Color.White,
+    surfaceContainerLow = Paper,
+    surfaceContainer = PaperContainer,
+    surfaceContainerHigh = PaperContainerHigh,
+    surfaceContainerHighest = PaperContainerHigh,
+    error = ErrorLight,
 )
 
+private val DarkColorScheme = darkColorScheme(
+    primary = Gold,
+    onPrimary = Navy,
+    primaryContainer = NavySecondary,
+    onPrimaryContainer = TextLight,
+    secondary = Gold,
+    onSecondary = Navy,
+    secondaryContainer = NavySecondary,
+    onSecondaryContainer = TextLight,
+    background = NavyDeep,
+    onBackground = TextLight,
+    surface = NavyDeep,
+    onSurface = TextLight,
+    surfaceVariant = Navy,
+    onSurfaceVariant = TextSecondaryLight,
+    surfaceContainerLowest = NavyDeep,
+    surfaceContainerLow = NavyDeep,
+    surfaceContainer = Navy,
+    surfaceContainerHigh = Navy,
+    surfaceContainerHighest = NavySecondary,
+    error = ErrorDark,
+)
+
+/**
+ * App theme. Dynamic color is intentionally not used: the navy/gold hierarchy from the
+ * product spec stays readable and consistent with the Home Screen widget.
+ */
 @Composable
 fun WawasanHarianTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme,
         typography = Typography,
         content = content
     )

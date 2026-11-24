@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Wawasan Harian</string>
+
+    <string name="nav_home">Beranda</string>
+    <string name="nav_curriculum">Kurikulum</string>
+    <string name="nav_progress">Progres</string>
+    <string name="nav_settings">Pengaturan</string>
+
+    <string name="action_back">Kembali</string>
+
+    <string name="placeholder_coming_soon">Halaman ini sedang disiapkan.</string>
+    <string name="placeholder_open_first_lesson">Mulai belajar</string>
+    <string name="placeholder_lesson_title">Pelajaran: %1$s</string>
+    <string name="placeholder_quiz_title">Kuis</string>
 </resources>

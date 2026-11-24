@@ -81,7 +81,7 @@ Versi stabil terbaru dicek di Google Maven / Maven Central pada 2026-11-24.
 | `androidx.glance:glance-appwidget` | 1.2.0 | Widget |
 | `androidx.glance:glance-material3` | 1.2.0 | Warna siang/malam widget |
 | `androidx.room:room-runtime` / `room-ktx` / `room-compiler` | 2.8.5 | Database |
-| `com.google.devtools.ksp` (plugin) | lihat Risiko R1 | Code generation Room |
+| `com.google.devtools.ksp` (plugin) | 2.3.14 | Code generation Room |
 | `androidx.datastore:datastore-preferences` | 1.3.0 | Preferensi |
 | `androidx.navigation:navigation-compose` | 2.10.2 | Navigasi |
 | `androidx.lifecycle:lifecycle-viewmodel-compose` / `lifecycle-runtime-compose` | 2.11.1 (selaras `lifecycleRuntimeKtx` saat ini) | ViewModel, `collectAsStateWithLifecycle` |
@@ -115,7 +115,7 @@ id.co.ptn.wawasanharian/
 
 | # | Risiko | Mitigasi |
 |---|---|---|
-| R1 | **KSP vs Kotlin bawaan AGP 9.** KSP 2.2.10-2.0.2 (cocok Kotlin 2.2.10) mungkin tidak mendukung Kotlin bawaan AGP 9; seri KSP 2.3.x (terbaru 2.3.14) tidak lagi terikat versi Kotlin. | Spike di awal Fase 1: coba KSP 2.3.14 dulu. Jika gagal, coba KSP yang cocok dengan Kotlin; terakhir naikkan Kotlin. Keputusan dan hasilnya dicatat. |
+| R1 ✅ | **KSP vs Kotlin bawaan AGP 9.** _Terselesaikan di Fase 1: KSP 2.3.14 + Room 2.8.5 berhasil build dengan Kotlin 2.2.10 bawaan AGP 9.5.2._ KSP 2.2.10-2.0.2 (cocok Kotlin 2.2.10) mungkin tidak mendukung Kotlin bawaan AGP 9; seri KSP 2.3.x (terbaru 2.3.14) tidak lagi terikat versi Kotlin. | Spike di awal Fase 1: coba KSP 2.3.14 dulu. Jika gagal, coba KSP yang cocok dengan Kotlin; terakhir naikkan Kotlin. Keputusan dan hasilnya dicatat. |
 | R2 | Glance 1.2.0 membawa dependensi transitif (WorkManager, protobuf) → APK lebih besar | Dapat diterima; dicek ukuran release build di Fase 5. |
 | R3 | Launcher HiOS (TECNO) bisa berbeda dalam ukuran sel, resize, dan pratinjau widget | `SizeMode.Responsive` + `previewLayout` XML; uji 2×1, 4×2, 4×3 di device TECNO. |
 | R4 | Penghematan baterai agresif HiOS bisa menunda update periodik | Tidak bergantung pada update periodik — widget selalu diperbarui langsung saat progres berubah. |
