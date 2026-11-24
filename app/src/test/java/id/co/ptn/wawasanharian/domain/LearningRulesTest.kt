@@ -103,6 +103,25 @@ class LearningRulesTest {
         assertFalse(summary.allCompleted)
     }
 
+    // --- Weekly count & stage progress -------------------------------------------------------
+
+    @Test
+    fun completedSince_countsOnlyRecentCompletions() {
+        val stages = curriculum(completed(100), completed(500), inProgress(600))
+        assertEquals(1, LearningRules.completedSince(stages, sinceMillis = 400))
+        assertEquals(2, LearningRules.completedSince(stages, sinceMillis = 0))
+    }
+
+    @Test
+    fun stageProgress_countsCompletedLessons() {
+        val stages = curriculum(completed(1), inProgress(2))
+        val first = LearningRules.stageProgress(stages[0])
+        assertEquals(1, first.completed)
+        assertEquals(2, first.total)
+        assertEquals(0.5f, first.fraction, 0.0001f)
+        assertEquals(0f, LearningRules.stageProgress(stages[1]).fraction, 0.0001f)
+    }
+
     // --- Quiz scoring ------------------------------------------------------------------------
 
     private val questions = listOf(

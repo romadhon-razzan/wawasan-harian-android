@@ -20,8 +20,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import id.co.ptn.wawasanharian.R
-import id.co.ptn.wawasanharian.feature.placeholder.PlaceholderScreen
+import id.co.ptn.wawasanharian.feature.curriculum.CurriculumRoute
+import id.co.ptn.wawasanharian.feature.home.HomeRoute
+import id.co.ptn.wawasanharian.feature.lesson.LessonRoute
+import id.co.ptn.wawasanharian.feature.progress.ProgressRoute
+import id.co.ptn.wawasanharian.feature.quiz.QuizRoute
+import id.co.ptn.wawasanharian.feature.settings.SettingsRoute
+import kotlinx.coroutines.flow.first
 
 /**
  * Root navigation. [pendingLessonId] is a lesson requested from outside the app
@@ -35,7 +40,14 @@ fun WawasanNavHost(
 ) {
     LaunchedEffect(pendingLessonId) {
         if (pendingLessonId != null) {
-            navController.navigate(Routes.lesson(pendingLessonId)) { launchSingleTop = true }
+            // On a cold start (e.g. from the widget) this effect runs before NavHost has set its
+            // graph; wait for the first back-stack entry so navigate() cannot crash.
+            navController.currentBackStackEntryFlow.first()
+            navController.navigate(Routes.lesson(pendingLessonId)) {
+                // Re-opening from the widget replaces any lesson/quiz already on top.
+                popUpTo(TopLevelDestination.HOME.route)
+                launchSingleTop = true
+            }
             onPendingLessonHandled()
         }
     }
@@ -44,6 +56,16 @@ fun WawasanNavHost(
     val currentRoute = backStackEntry?.destination?.route
     val showBottomBar = TopLevelDestination.entries.any { it.route == currentRoute }
 
+    fun openTab(destination: TopLevelDestination) {
+        navController.navigate(destination.route) {
+            popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+    val openLesson: (String) -> Unit = { id -> navController.navigate(Routes.lesson(id)) }
+
     Scaffold(
         bottomBar = {
             if (showBottomBar) {
@@ -51,15 +73,7 @@ fun WawasanNavHost(
                     TopLevelDestination.entries.forEach { destination ->
                         NavigationBarItem(
                             selected = currentRoute == destination.route,
-                            onClick = {
-                                navController.navigate(destination.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            },
+                            onClick = { openTab(destination) },
                             // The visible label already describes the item for TalkBack.
                             icon = { Icon(painterResource(destination.iconRes), contentDescription = null) },
                             label = { Text(stringResource(destination.labelRes)) },
@@ -75,37 +89,43 @@ fun WawasanNavHost(
             modifier = Modifier.padding(innerPadding),
         ) {
             composable(TopLevelDestination.HOME.route) {
-                PlaceholderScreen(
-                    title = stringResource(R.string.nav_home),
-                    actionLabel = stringResource(R.string.placeholder_open_first_lesson),
-                    onAction = { navController.navigate(Routes.lesson("placeholder")) },
+                HomeRoute(
+                    onOpenLesson = openLesson,
+                    onOpenCurriculum = { openTab(TopLevelDestination.CURRICULUM) },
                 )
             }
             composable(TopLevelDestination.CURRICULUM.route) {
-                PlaceholderScreen(title = stringResource(R.string.nav_curriculum))
+                CurriculumRoute(onOpenLesson = openLesson)
             }
             composable(TopLevelDestination.PROGRESS.route) {
-                PlaceholderScreen(title = stringResource(R.string.nav_progress))
+                ProgressRoute(onOpenLesson = openLesson)
             }
             composable(TopLevelDestination.SETTINGS.route) {
-                PlaceholderScreen(title = stringResource(R.string.nav_settings))
+                SettingsRoute()
             }
             composable(
                 Routes.LESSON,
                 arguments = listOf(navArgument(Routes.ARG_LESSON_ID) { type = NavType.StringType }),
             ) { entry ->
                 val lessonId = entry.arguments?.getString(Routes.ARG_LESSON_ID).orEmpty()
-                PlaceholderScreen(
-                    title = stringResource(R.string.placeholder_lesson_title, lessonId),
+                LessonRoute(
+                    lessonId = lessonId,
                     onBack = { navController.popBackStack() },
+                    onOpenLesson = { id ->
+                        // Previous/next replaces the current lesson so Back returns to where the user came from.
+                        navController.navigate(Routes.lesson(id)) {
+                            popUpTo(Routes.LESSON) { inclusive = true }
+                        }
+                    },
+                    onOpenQuiz = { id -> navController.navigate(Routes.quiz(id)) },
                 )
             }
             composable(
                 Routes.QUIZ,
                 arguments = listOf(navArgument(Routes.ARG_LESSON_ID) { type = NavType.StringType }),
-            ) {
-                PlaceholderScreen(
-                    title = stringResource(R.string.placeholder_quiz_title),
+            ) { entry ->
+                QuizRoute(
+                    lessonId = entry.arguments?.getString(Routes.ARG_LESSON_ID).orEmpty(),
                     onBack = { navController.popBackStack() },
                 )
             }

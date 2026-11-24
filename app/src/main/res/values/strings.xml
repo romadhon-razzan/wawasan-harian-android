@@ -1,15 +1,115 @@
 <resources>
     <string name="app_name">Wawasan Harian</string>
 
+    <!-- Navigation -->
     <string name="nav_home">Beranda</string>
     <string name="nav_curriculum">Kurikulum</string>
     <string name="nav_progress">Progres</string>
     <string name="nav_settings">Pengaturan</string>
 
+    <!-- Common -->
     <string name="action_back">Kembali</string>
+    <string name="error_generic">Maaf, data belum bisa dimuat. Coba tutup lalu buka lagi halaman ini.</string>
+    <string name="status_not_started">Belum dimulai</string>
+    <string name="status_in_progress">Sedang dipelajari</string>
+    <string name="status_completed">Selesai</string>
+    <string name="lesson_number">Pelajaran %1$d dari %2$d</string>
+    <string name="stage_label">Tahap %1$d</string>
+    <string name="stage_weeks">Minggu %1$d–%2$d</string>
+    <string name="stage_label_with_title">Tahap %1$d · %2$s</string>
+    <string name="minutes">± %1$d menit</string>
+    <string name="stage_completed_count">%1$d/%2$d selesai</string>
+    <string name="progress_completed_count">%1$d dari %2$d pelajaran selesai</string>
 
-    <string name="placeholder_coming_soon">Halaman ini sedang disiapkan.</string>
-    <string name="placeholder_open_first_lesson">Mulai belajar</string>
-    <string name="placeholder_lesson_title">Pelajaran: %1$s</string>
-    <string name="placeholder_quiz_title">Kuis</string>
+    <!-- Home -->
+    <string name="home_greeting_morning">Selamat pagi</string>
+    <string name="home_greeting_afternoon">Selamat siang</string>
+    <string name="home_greeting_evening">Selamat sore</string>
+    <string name="home_greeting_night">Selamat malam</string>
+    <string name="home_tagline">Belajar sedikit setiap hari, wawasan bertambah setiap saat.</string>
+    <string name="home_welcome">Selamat datang! Mulai dari pelajaran pertama—cukup sekitar 15 menit.</string>
+    <string name="home_label_today">PELAJARAN HARI INI</string>
+    <string name="home_label_continue">LANJUTKAN BELAJAR</string>
+    <string name="action_start">Mulai belajar</string>
+    <string name="action_continue">Lanjutkan</string>
+    <string name="home_all_done_title">Semua pelajaran selesai!</string>
+    <string name="home_all_done_body">Hebat! Kamu sudah menyelesaikan seluruh kurikulum. Buka kembali pelajaran mana pun untuk mengulang.</string>
+    <string name="action_view_curriculum">Lihat kurikulum</string>
+    <string name="home_progress_title">Progres belajarmu</string>
+    <string name="home_week_count">7 hari terakhir: %1$d pelajaran selesai</string>
+    <string name="home_week_zero">Belum ada pelajaran selesai dalam 7 hari terakhir. Mulai kapan pun kamu siap.</string>
+    <string name="home_roadmap_title">Peta belajar 12 minggu</string>
+    <string name="home_roadmap_subtitle">Enam tahap, masing-masing sekitar dua minggu. Jadwal ini hanya saran—belajarlah sesuai kecepatanmu.</string>
+    <string name="home_recent_title">Baru saja diselesaikan</string>
+
+    <!-- Curriculum -->
+    <string name="curriculum_subtitle">Enam tahap pengetahuan umum, dimulai dari dasar. Buka pelajaran mana pun, kapan pun.</string>
+    <string name="curriculum_current">Saat ini</string>
+
+    <!-- Lesson -->
+    <string name="lesson_kind_kenali">Kenali</string>
+    <string name="lesson_kind_ketahui">Ketahui</string>
+    <string name="lesson_kind_hubungkan">Hubungkan</string>
+    <string name="lesson_kind_diskusikan">Diskusikan</string>
+    <string name="lesson_kind_uji">Uji</string>
+    <string name="lesson_kind_rangkum">Rangkum</string>
+    <string name="lesson_step">%1$d · %2$s</string>
+    <string name="lesson_key_terms">Istilah penting</string>
+    <string name="lesson_examples">Contoh sehari-hari</string>
+    <string name="lesson_discussion_title">Bahan obrolan</string>
+    <string name="lesson_discussion_intro">Coba jawab dengan kata-katamu sendiri, lalu bandingkan dengan contoh jawaban.</string>
+    <string name="lesson_show_answer">Lihat contoh jawaban</string>
+    <string name="lesson_hide_answer">Sembunyikan contoh jawaban</string>
+    <string name="lesson_quiz_title">Kuis singkat</string>
+    <string name="lesson_quiz_body">%1$d soal pilihan ganda. Kuis ini latihan saja dan tidak memengaruhi status selesai.</string>
+    <string name="lesson_quiz_best">Skor terbaik: %1$d dari %2$d</string>
+    <string name="action_start_quiz">Mulai kuis</string>
+    <string name="action_retake_quiz">Ulangi kuis</string>
+    <string name="action_mark_complete">Tandai selesai</string>
+    <string name="lesson_completed">Pelajaran ini sudah selesai</string>
+    <string name="action_previous">Sebelumnya</string>
+    <string name="action_next">Berikutnya</string>
+    <string name="lesson_not_found">Pelajaran tidak ditemukan. Mungkin isi aplikasi sudah diperbarui.</string>
+
+    <!-- Quiz -->
+    <string name="quiz_title">Kuis</string>
+    <string name="quiz_intro">Pilih satu jawaban untuk setiap soal. Tidak ada batas waktu.</string>
+    <string name="quiz_question_number">Soal %1$d dari %2$d</string>
+    <string name="quiz_answered_count">%1$d dari %2$d soal terjawab</string>
+    <string name="action_submit_quiz">Lihat hasil</string>
+    <string name="quiz_score">Skor kamu: %1$d dari %2$d</string>
+    <string name="quiz_msg_perfect">Luar biasa! Semua jawabanmu benar.</string>
+    <string name="quiz_msg_good">Bagus! Baca penjelasan di bawah untuk soal yang belum tepat.</string>
+    <string name="quiz_msg_keep_going">Tidak apa-apa. Setiap jawaban yang belum tepat adalah kesempatan belajar. Baca penjelasannya, lalu coba lagi.</string>
+    <string name="quiz_feedback_correct">Tepat!</string>
+    <string name="quiz_feedback_incorrect">Belum tepat. Jawaban yang benar: %1$s</string>
+    <string name="quiz_feedback_unanswered">Belum dijawab. Jawaban yang benar: %1$s</string>
+    <string name="quiz_option_correct">Jawaban benar</string>
+    <string name="quiz_option_your_choice">Pilihanmu</string>
+    <string name="action_retry_quiz">Coba lagi</string>
+    <string name="action_back_to_lesson">Kembali ke pelajaran</string>
+    <string name="quiz_empty">Kuis untuk pelajaran ini belum tersedia.</string>
+
+    <!-- Progress -->
+    <string name="progress_subtitle">Setiap langkah kecil tetap berarti.</string>
+    <string name="progress_percent">%1$d%% kurikulum</string>
+    <string name="progress_current_stage">Tahap saat ini</string>
+    <string name="progress_per_stage">Progres per tahap</string>
+    <string name="progress_recent">Aktivitas terakhir</string>
+    <string name="progress_recent_item">Selesai %1$s</string>
+    <string name="progress_empty">Belum ada pelajaran yang selesai. Mulai dari pelajaran pertama kapan pun kamu siap.</string>
+    <string name="progress_no_pressure">Tidak ada hitungan hari beruntun di sini. Melewatkan satu hari tidak apa-apa—progresmu tetap tersimpan.</string>
+
+    <!-- Settings -->
+    <string name="settings_reset_title">Reset progres belajar</string>
+    <string name="settings_reset_body">Hapus semua status pelajaran dan riwayat kuis. Isi pelajaran tetap ada.</string>
+    <string name="settings_reset_dialog_title">Reset progres?</string>
+    <string name="settings_reset_dialog_body">Semua status pelajaran dan skor kuis akan dihapus. Tindakan ini tidak bisa dibatalkan.</string>
+    <string name="action_reset">Reset</string>
+    <string name="action_cancel">Batal</string>
+    <string name="settings_reset_done">Progres belajar telah direset.</string>
+    <string name="settings_about_title">Tentang aplikasi</string>
+    <string name="settings_about_body">Wawasan Harian membantumu membangun pengetahuan umum dari dasar lewat pelajaran singkat setiap hari. Semua materi tersedia tanpa internet, dan aplikasi ini tidak meminta izin apa pun.</string>
+    <string name="settings_app_version">Versi aplikasi</string>
+    <string name="settings_content_version">Versi konten</string>
 </resources>

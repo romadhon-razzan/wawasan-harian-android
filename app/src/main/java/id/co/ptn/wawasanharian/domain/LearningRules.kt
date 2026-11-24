@@ -38,6 +38,18 @@ object LearningRules {
         )
     }
 
+    /** Number of lessons completed at or after [sinceMillis]. Used for gentle weekly feedback, not streaks. */
+    fun completedSince(stages: List<StageWithLessons>, sinceMillis: Long): Int =
+        stages.flatMap { it.lessons }.count {
+            it.status == LessonStatus.COMPLETED && (it.completedAt ?: Long.MIN_VALUE) >= sinceMillis
+        }
+
+    fun stageProgress(stage: StageWithLessons): StageProgress = StageProgress(
+        stage = stage.stage,
+        completed = stage.lessons.count { it.status == LessonStatus.COMPLETED },
+        total = stage.lessons.size,
+    )
+
     /** Scores [answers] (questionId → selected optionId). Unanswered questions count as incorrect. */
     fun scoreQuiz(questions: List<QuizQuestion>, answers: Map<String, String>): QuizResult =
         QuizResult(

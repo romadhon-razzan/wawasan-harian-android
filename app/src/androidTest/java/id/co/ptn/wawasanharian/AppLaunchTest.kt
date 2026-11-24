@@ -27,6 +27,11 @@ class AppLaunchTest {
     @Test
     fun bottomNavigation_switchesTabs() {
         composeRule.onNode(hasText("Kurikulum") and isSelectable()).performClick()
-        composeRule.onNodeWithText("Halaman ini sedang disiapkan.").assertIsDisplayed()
+        composeRule.onNodeWithText(
+            "Enam tahap pengetahuan umum, dimulai dari dasar. Buka pelajaran mana pun, kapan pun."
+        ).assertIsDisplayed()
+
+        composeRule.onNode(hasText("Pengaturan") and isSelectable()).performClick()
+        composeRule.onNodeWithText("Reset progres belajar").assertIsDisplayed()
     }
 }

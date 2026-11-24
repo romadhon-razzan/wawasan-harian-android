@@ -11,8 +11,8 @@ Keputusan teknis: [`docs/phase-0-technical-plan.md`](docs/phase-0-technical-plan
 | 0 — Inspeksi & keputusan teknis | Selesai |
 | 1 — Fondasi proyek (tema, navigasi, dependensi) | Selesai |
 | 2 — Data lokal & kurikulum awal | Selesai |
-| 3 — Pengalaman belajar | Berikutnya |
-| 4 — Widget Home Screen (Glance) | – |
+| 3 — Pengalaman belajar | Selesai |
+| 4 — Widget Home Screen (Glance) | Berikutnya |
 | 5 — Polesan & kualitas | – |
 
 ## Kebutuhan

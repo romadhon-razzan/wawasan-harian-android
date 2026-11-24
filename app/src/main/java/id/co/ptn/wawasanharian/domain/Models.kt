@@ -87,6 +87,10 @@ data class QuizAttempt(
 
 data class QuizStats(val latest: QuizAttempt?, val best: QuizAttempt?)
 
+data class StageProgress(val stage: LearningStage, val completed: Int, val total: Int) {
+    val fraction: Float get() = if (total == 0) 0f else completed.toFloat() / total
+}
+
 data class ProgressSummary(
     val completedCount: Int,
     val totalCount: Int,
