@@ -129,3 +129,13 @@ id.co.ptn.wawasanharian/
 3. Tema aplikasi navy/emas (§5.3) siang & malam; dynamic color dimatikan secara default.
 4. Navigasi dasar + layar placeholder untuk 6 fitur.
 5. Verifikasi: `assembleDebug`, `testDebugUnitTest`, install & launch di TECNO CM7.
+
+## 7. Perubahan keputusan selama implementasi
+
+- **Fase 2 — DataStore ditunda.** `lastKnownContentVersion` tidak disimpan di DataStore; versi konten dibaca dari kolom
+  `lesson.contentVersion` di Room sehingga pengecekan dan seeding terjadi atomik dalam satu transaksi. DataStore akan
+  ditambahkan bersama fitur pengingat (opsional). `room-ktx` juga dilepas karena dukungan coroutine/Flow sudah ada di
+  `room-runtime` 2.8.
+- **Fase 2 — urutan pelajaran.** 12 pelajaran dari spesifikasi §9 dipetakan 2 per tahap. "Negara, bangsa, dan wilayah"
+  masuk Tahap 5 (Budaya & Masyarakat); "Internet, komputer, dan AI" masuk Tahap 6 (Dunia Modern).
+- **Fase 2 — tabel progres tanpa foreign key** ke `lesson`, agar penggantian konten tidak menghapus progres pengguna.
